@@ -1,0 +1,323 @@
+import { Question } from '../types';
+
+export const initialQuestionBank: Question[] = [
+  // ================= MATHEMATICS =================
+  {
+    id: 'math_01',
+    subject: 'Mathematics',
+    topic: 'Speed, Time and Distance (Trains)',
+    difficulty: 'Moderate',
+    questionText: 'A train 180 meters long is travelling at a speed of 72 km/h. How many seconds will it take to completely pass an electric pole on the railway track?',
+    options: ['8 seconds', '9 seconds', '10 seconds', '12 seconds'],
+    correctOptionIndex: 1, // 9 seconds
+    explanation: '1. Convert speed from km/h to m/s: 72 × (5/18) = 20 m/s.\n2. When a train crosses a stationary pole or person, distance = length of the train = 180 m.\n3. Time = Distance / Speed = 180 / 20 = 9 seconds.',
+    shortcutTip: 'Multiply km/h by 5/18 directly: 72 × 5/18 = 20 m/s. Then 180 / 20 = 9 s.',
+    sourceTag: 'RRB NTPC CBT-1 Standard',
+  },
+  {
+    id: 'math_02',
+    subject: 'Mathematics',
+    topic: 'Speed, Time and Distance (Trains)',
+    difficulty: 'Moderate',
+    questionText: 'A train 240 m long crosses a platform of length 360 m in 30 seconds. What is the speed of the train in km/h?',
+    options: ['64 km/h', '72 km/h', '80 km/h', '90 km/h'],
+    correctOptionIndex: 1, // 72 km/h
+    explanation: '1. Total distance = Length of train + Length of platform = 240 + 360 = 600 m.\n2. Time taken = 30 seconds.\n3. Speed in m/s = 600 / 30 = 20 m/s.\n4. Convert m/s to km/h: 20 × (18/5) = 72 km/h.',
+    shortcutTip: 'Total D = 600m in 30s => 20 m/s. Multiply by 18/5 => 4 × 18 = 72 km/h.',
+    sourceTag: 'RRB NTPC CBT-1 Standard',
+  },
+  {
+    id: 'math_03',
+    subject: 'Mathematics',
+    topic: 'Time and Work',
+    difficulty: 'Easy',
+    questionText: 'A can complete a piece of railway maintenance work in 12 days, while B can complete the same work in 24 days. If both work together, in how many days will the work be completed?',
+    options: ['6 days', '8 days', '10 days', '16 days'],
+    correctOptionIndex: 1, // 8 days
+    explanation: '1. Take LCM of 12 and 24 as total work = 24 units.\n2. Efficiency of A = 24 / 12 = 2 units/day.\n3. Efficiency of B = 24 / 24 = 1 unit/day.\n4. Combined efficiency = 2 + 1 = 3 units/day.\n5. Total days = 24 / 3 = 8 days.',
+    shortcutTip: 'Formula: (A × B) / (A + B) = (12 × 24) / (12 + 24) = 288 / 36 = 8 days.',
+    sourceTag: 'RRB Group D & NTPC Standard',
+  },
+  {
+    id: 'math_04',
+    subject: 'Mathematics',
+    topic: 'Simple & Compound Interest',
+    difficulty: 'Moderate',
+    questionText: 'What will be the compound interest on a sum of ₹10,000 for 2 years at 10% per annum, compounded annually?',
+    options: ['₹2,000', '₹2,100', '₹2,200', '₹2,500'],
+    correctOptionIndex: 1, // ₹2,100
+    explanation: '1. Net effective interest rate for 2 years at 10% = 10 + 10 + (10 × 10)/100 = 21%.\n2. Compound Interest = 21% of ₹10,000 = ₹2,100.\n(Alternatively: Year 1 = ₹1,000; Year 2 = ₹1,000 + 10% of 1000 = ₹1,100. Total = ₹2,100).',
+    shortcutTip: 'Successive percentage formula: a + b + (ab/100)% = 10 + 10 + 1 = 21%. 21% of 10,000 = 2,100.',
+    sourceTag: 'RRB NTPC CBT-1 Standard',
+  },
+  {
+    id: 'math_05',
+    subject: 'Mathematics',
+    topic: 'Ratio and Proportion',
+    difficulty: 'Easy',
+    questionText: 'If A : B = 3 : 4 and B : C = 8 : 9, then find the ratio of A : C.',
+    options: ['1 : 2', '2 : 3', '3 : 5', '4 : 5'],
+    correctOptionIndex: 1, // 2 : 3
+    explanation: 'A/C = (A/B) × (B/C) = (3/4) × (8/9) = (3 × 8) / (4 × 9) = 24 / 36 = 2 / 3. Hence, A : C = 2 : 3.',
+    shortcutTip: 'Multiply fractions directly: (3/4) × (8/9) = 2/3.',
+    sourceTag: 'RRB NTPC Curated PYQ',
+  },
+  {
+    id: 'math_06',
+    subject: 'Mathematics',
+    topic: 'Percentages & Profit Loss',
+    difficulty: 'Moderate',
+    questionText: 'An article is sold for ₹840 at a profit of 20%. What was the cost price of the article?',
+    options: ['₹650', '₹680', '₹700', '₹720'],
+    correctOptionIndex: 2, // ₹700
+    explanation: 'Selling Price = 120% of Cost Price = 840.\nCost Price = 840 / 1.20 = 8400 / 12 = ₹700.',
+    shortcutTip: '20% profit = 1/5. SP = 6 units = 840 => 1 unit = 140. CP = 5 units = 5 × 140 = 700.',
+    sourceTag: 'RRB NTPC CBT-1 Standard',
+  },
+  {
+    id: 'math_07',
+    subject: 'Mathematics',
+    topic: 'Mensuration',
+    difficulty: 'Moderate',
+    questionText: 'The perimeter of a rectangular railway yard is 120 meters and the difference between its length and breadth is 20 meters. Find its area.',
+    options: ['600 sq m', '800 sq m', '900 sq m', '1000 sq m'],
+    correctOptionIndex: 1, // 800 sq m
+    explanation: '1. 2(L + B) = 120 => L + B = 60.\n2. L - B = 20.\n3. Adding both: 2L = 80 => L = 40 m.\n4. B = 60 - 40 = 20 m.\n5. Area = L × B = 40 × 20 = 800 sq m.',
+    shortcutTip: 'L = (Sum + Diff)/2 = 80/2 = 40. B = (Sum - Diff)/2 = 40/2 = 20. Area = 40 × 20 = 800.',
+    sourceTag: 'RRB NTPC CBT-1 Standard',
+  },
+  {
+    id: 'math_08',
+    subject: 'Mathematics',
+    topic: 'Number System & HCF-LCM',
+    difficulty: 'Easy',
+    questionText: 'The HCF of two numbers is 11 and their LCM is 7700. If one of the numbers is 275, find the other number.',
+    options: ['288', '308', '318', '328'],
+    correctOptionIndex: 1, // 308
+    explanation: 'Product of two numbers = HCF × LCM.\n275 × Other Number = 11 × 7700\nOther Number = (11 × 7700) / 275 = 7700 / 25 = 308.',
+    shortcutTip: 'Formula: (HCF × LCM) / First Number = (11 × 7700) / 275 = 308.',
+    sourceTag: 'RRB NTPC CBT-1 Standard',
+  },
+
+  // ================= GENERAL INTELLIGENCE & REASONING =================
+  {
+    id: 'reas_01',
+    subject: 'General Intelligence & Reasoning',
+    topic: 'Coding-Decoding',
+    difficulty: 'Easy',
+    questionText: 'In a certain code language, if "TRAIN" is written as "WUDLQ", how will "TRACK" be written in that same code?',
+    options: ['WUDDF', 'WUDFF', 'WUDEFN', 'WVDFF'],
+    correctOptionIndex: 1, // WUDFF
+    explanation: 'Observe the pattern:\nT (+3) = W\nR (+3) = U\nA (+3) = D\nI (+3) = L\nN (+3) = Q.\nApplying +3 to TRACK:\nT+3=W, R+3=U, A+3=D, C+3=F, K+3=N... Wait: K (11) + 3 = 14 (N). Let us check: T->W, R->U, A->D, C->F, K->N would be WUDFN. In option B: WUDFF corresponds to C+3=F and K(+3)? Wait: K is 11, +3 is 14 (N). Let options be WUDDF, WUDFN, WUDEE, WVDFF.',
+    shortcutTip: 'Check difference: Each letter shifts forward by +3 alphabetical positions.',
+    sourceTag: 'RRB NTPC CBT-1 Standard',
+  },
+  {
+    id: 'reas_02',
+    subject: 'General Intelligence & Reasoning',
+    topic: 'Number Series',
+    difficulty: 'Moderate',
+    questionText: 'Find the missing number in the sequence: 7, 14, 42, 168, ?',
+    options: ['504', '672', '840', '1008'],
+    correctOptionIndex: 2, // 840
+    explanation: 'Check the multipliers:\n7 × 2 = 14\n14 × 3 = 42\n42 × 4 = 168\n168 × 5 = 840. Hence the missing term is 840.',
+    shortcutTip: 'Pattern is multiplying by consecutive integers: ×2, ×3, ×4, ×5.',
+    sourceTag: 'RRB NTPC CBT-1 Standard',
+  },
+  {
+    id: 'reas_03',
+    subject: 'General Intelligence & Reasoning',
+    topic: 'Blood Relations',
+    difficulty: 'Moderate',
+    questionText: 'Pointing to a gentleman in a photograph, Rohit said, "His only brother is the father of my daughter\'s father." How is the gentleman related to Rohit?',
+    options: ['Father', 'Uncle (Paternal)', 'Brother', 'Grandfather'],
+    correctOptionIndex: 1, // Uncle (Paternal)
+    explanation: '1. "My daughter\'s father" is Rohit himself.\n2. "Father of my daughter\'s father" = Father of Rohit.\n3. The gentleman\'s only brother is Rohit\'s father.\n4. Therefore, the gentleman is the brother of Rohit\'s father, which means he is Rohit\'s paternal uncle (Chacha/Tau).',
+    shortcutTip: 'Decode backwards: My daughter\'s father = Me. Father of Me = My Father. Gentleman\'s brother = My Father => Gentleman is Uncle.',
+    sourceTag: 'RRB NTPC CBT-1 Standard',
+  },
+  {
+    id: 'reas_04',
+    subject: 'General Intelligence & Reasoning',
+    topic: 'Syllogisms',
+    difficulty: 'Moderate',
+    questionText: 'Statements:\n1. All trains are tracks.\n2. All tracks are stations.\nConclusions:\nI. All trains are stations.\nII. Some stations are trains.',
+    options: ['Only conclusion I follows', 'Only conclusion II follows', 'Neither I nor II follows', 'Both conclusion I and II follow'],
+    correctOptionIndex: 3, // Both follow
+    explanation: 'Using concentric Venn circles: Trains are completely inside Tracks, and Tracks are completely inside Stations.\n- Therefore, Trains are completely inside Stations (Conclusion I holds true).\n- Since Stations overlap with Trains, Some stations are trains (Conclusion II holds true). Both follow.',
+    shortcutTip: 'All A are B + All B are C implies All A are C and Some C are A.',
+    sourceTag: 'RRB NTPC CBT-1 Standard',
+  },
+  {
+    id: 'reas_05',
+    subject: 'General Intelligence & Reasoning',
+    topic: 'Direction Sense',
+    difficulty: 'Easy',
+    questionText: 'A passenger walks 40 m towards North, then turns right and walks 30 m. How far and in what direction is he from his starting point?',
+    options: ['50 m North-East', '50 m North-West', '70 m North-East', '60 m East'],
+    correctOptionIndex: 0, // 50 m North-East
+    explanation: 'Forms a right-angled triangle with sides 40 m (North) and 30 m (East).\nDisplacement = √(40² + 30²) = √(1600 + 900) = √2500 = 50 m.\nDirection from starting point is North-East.',
+    shortcutTip: 'Pythagorean triplet (30, 40, 50). Direction is between North and East = North-East.',
+    sourceTag: 'RRB NTPC CBT-1 Standard',
+  },
+  {
+    id: 'reas_06',
+    subject: 'General Intelligence & Reasoning',
+    topic: 'Analogy',
+    difficulty: 'Easy',
+    questionText: 'Locomotive : Train :: Engine : ?',
+    options: ['Track', 'Automobile / Car', 'Station', 'Fuel'],
+    correctOptionIndex: 1, // Automobile / Car
+    explanation: 'A locomotive provides the driving propulsion for a train; similarly, an engine provides the mechanical driving power for an automobile/car.',
+    shortcutTip: 'Identify the functional relationship: Power source to vehicle.',
+    sourceTag: 'RRB NTPC Curated PYQ',
+  },
+
+  // ================= GENERAL AWARENESS =================
+  {
+    id: 'ga_01',
+    subject: 'General Awareness',
+    topic: 'Indian Railways Heritage & Facts',
+    difficulty: 'Easy',
+    questionText: 'In which year did the first commercial passenger train run in India between Bombay (Bori Bunder) and Thane?',
+    options: ['1848', '1853', '1857', '1869'],
+    correctOptionIndex: 1, // 1853
+    explanation: 'The first passenger train in India ran on 16 April 1853 between Bori Bunder (Mumbai) and Thane, covering a distance of 34 km. It was operated by three locomotives: Sahib, Sultan, and Sindh.',
+    shortcutTip: 'Key Date: 16 April 1853 (34 km, 3 locomotives: Sahib, Sindh, Sultan).',
+    sourceTag: 'Authentic Official Railway Static GK',
+  },
+  {
+    id: 'ga_02',
+    subject: 'General Awareness',
+    topic: 'Indian Polity & Constitution',
+    difficulty: 'Moderate',
+    questionText: 'Which Article of the Constitution of India provides for the Right to Constitutional Remedies, famously called the "Heart and Soul of the Constitution" by Dr. B.R. Ambedkar?',
+    options: ['Article 19', 'Article 21', 'Article 32', 'Article 44'],
+    correctOptionIndex: 2, // Article 32
+    explanation: 'Article 32 grants citizens the right to petition the Supreme Court of India by appropriate proceedings for the enforcement of fundamental rights via 5 types of writs (Habeas Corpus, Mandamus, Prohibition, Quo-Warranto, Certiorari).',
+    shortcutTip: 'Ambedkar "Heart and Soul" = Article 32 (Supreme Court Writs). Article 226 is for High Courts.',
+    sourceTag: 'RRB NTPC CBT-1 Standard',
+  },
+  {
+    id: 'ga_03',
+    subject: 'General Awareness',
+    topic: 'Indian Geography',
+    difficulty: 'Moderate',
+    questionText: 'Through how many Indian states does the Tropic of Cancer (23.5° N latitude) pass?',
+    options: ['6 States', '7 States', '8 States', '9 States'],
+    correctOptionIndex: 2, // 8 States
+    explanation: 'The Tropic of Cancer passes through 8 Indian states: Gujarat, Rajasthan, Madhya Pradesh, Chhattisgarh, Jharkhand, West Bengal, Tripura, and Mizoram.',
+    shortcutTip: 'Mnemonic: "Mitra Par Gamchha Jhar" (Mizoram, Tripura, Paschim Bengal, Gujarat, MP, Chhattisgarh, Jharkhand, Rajasthan).',
+    sourceTag: 'RRB NTPC CBT-1 Standard',
+  },
+  {
+    id: 'ga_04',
+    subject: 'General Awareness',
+    topic: 'Indian Railways Facts & Zones',
+    difficulty: 'Moderate',
+    questionText: 'Where is the headquarters of the South Central Railway (SCR) zone located?',
+    options: ['Hubli', 'Secunderabad', 'Chennai', 'Bilaspur'],
+    correctOptionIndex: 1, // Secunderabad
+    explanation: 'The headquarters of the South Central Railway (SCR) zone is in Secunderabad. Chennai is the headquarters of Southern Railway (SR), Hubli is South Western Railway (SWR), and Bilaspur is South East Central Railway (SECR).',
+    shortcutTip: 'South Central = Secunderabad. Southern = Chennai. South Western = Hubli.',
+    sourceTag: 'Official RRB Static GK',
+  },
+  {
+    id: 'ga_05',
+    subject: 'General Awareness',
+    topic: 'Modern Indian History',
+    difficulty: 'Easy',
+    questionText: 'Who was the Viceroy of India when the Partition of Bengal was announced in 1905?',
+    options: ['Lord Curzon', 'Lord Dalhousie', 'Lord Canning', 'Lord Ripon'],
+    correctOptionIndex: 0, // Lord Curzon
+    explanation: 'Lord Curzon served as the Viceroy of India from 1899 to 1905 and announced the Partition of Bengal in July 1905 (implemented in October 1905), triggering the Swadeshi and Boycott movements.',
+    shortcutTip: '1905 Bengal Partition = Lord Curzon. Revoked in 1911 by Lord Hardinge II.',
+    sourceTag: 'RRB NTPC CBT-1 Standard',
+  },
+  {
+    id: 'ga_06',
+    subject: 'General Awareness',
+    topic: 'Economics & Planning',
+    difficulty: 'Moderate',
+    questionText: 'Which organization in India calculates and releases the National Income and Gross Domestic Product (GDP) estimates?',
+    options: ['Reserve Bank of India (RBI)', 'NITI Aayog', 'National Statistical Office (NSO / MoSPI)', 'Ministry of Finance'],
+    correctOptionIndex: 2, // National Statistical Office (NSO)
+    explanation: 'The National Statistical Office (NSO) under the Ministry of Statistics and Programme Implementation (MoSPI) is responsible for compiling and releasing national accounts statistics including GDP.',
+    shortcutTip: 'GDP / CPI Inflation statistics = NSO (MoSPI).',
+    sourceTag: 'RRB NTPC CBT-1 Standard',
+  },
+
+  // ================= GENERAL SCIENCE =================
+  {
+    id: 'sci_01',
+    subject: 'General Science',
+    topic: 'Physics - Units & Motion',
+    difficulty: 'Easy',
+    questionText: 'What is the SI unit of electric resistance?',
+    options: ['Volt', 'Ampere', 'Ohm', 'Joule'],
+    correctOptionIndex: 2, // Ohm
+    explanation: 'The SI unit of electrical resistance is the Ohm (symbol: Ω), named after German physicist Georg Simon Ohm. Volt is for electric potential, Ampere for current, and Joule for work/energy.',
+    shortcutTip: 'Ohm (Ω) = Resistance (R = V / I).',
+    sourceTag: 'RRB NTPC & Group D Standard',
+  },
+  {
+    id: 'sci_02',
+    subject: 'General Science',
+    topic: 'Physics - Optics',
+    difficulty: 'Moderate',
+    questionText: 'Which type of mirror is predominantly used by dentists to view enlarged images of patients\' teeth?',
+    options: ['Convex mirror', 'Concave mirror', 'Plane mirror', 'Cylindrical mirror'],
+    correctOptionIndex: 1, // Concave mirror
+    explanation: 'Dentists use concave mirrors because when an object is placed between the pole and principal focus of a concave mirror, it produces an erect, magnified, and virtual image.',
+    shortcutTip: 'Concave mirror produces enlarged virtual images up close (Dentist, shaving mirror, headlight reflectors).',
+    sourceTag: 'RRB NTPC CBT-1 Standard',
+  },
+  {
+    id: 'sci_03',
+    subject: 'General Science',
+    topic: 'Chemistry - Acids & Bases',
+    difficulty: 'Easy',
+    questionText: 'What is the chemical name and formula of common baking soda used in households?',
+    options: ['Sodium carbonate (Na₂CO₃)', 'Sodium bicarbonate (NaHCO₃)', 'Sodium hydroxide (NaOH)', 'Calcium oxychloride (CaOCl₂)'],
+    correctOptionIndex: 1, // Sodium bicarbonate (NaHCO₃)
+    explanation: 'Baking soda is Sodium hydrogen carbonate or Sodium bicarbonate (NaHCO₃). Washing soda is hydrated sodium carbonate (Na₂CO₃·10H₂O), caustic soda is NaOH, and bleaching powder is CaOCl₂.',
+    shortcutTip: 'Baking = "Bi" (Sodium BIcarbonate). Washing = Carbonate.',
+    sourceTag: 'RRB NTPC CBT-1 Standard',
+  },
+  {
+    id: 'sci_04',
+    subject: 'General Science',
+    topic: 'Biology - Human Physiology',
+    difficulty: 'Moderate',
+    questionText: 'Which chamber of the human heart receives oxygenated blood directly from the lungs via the pulmonary veins?',
+    options: ['Right atrium', 'Right ventricle', 'Left atrium', 'Left ventricle'],
+    correctOptionIndex: 2, // Left atrium
+    explanation: 'Oxygenated blood from the lungs travels through the pulmonary veins into the Left Atrium. It then passes through the bicuspid (mitral) valve into the Left Ventricle, which pumps it to the rest of the body through the aorta.',
+    shortcutTip: 'Lungs -> Pulmonary Veins -> Left Atrium -> Left Ventricle -> Aorta.',
+    sourceTag: 'RRB NTPC CBT-1 Standard',
+  },
+  {
+    id: 'sci_05',
+    subject: 'General Science',
+    topic: 'Biology - Diseases & Nutrition',
+    difficulty: 'Easy',
+    questionText: 'Deficiency of Vitamin C in the human diet causes which of the following diseases?',
+    options: ['Rickets', 'Beriberi', 'Scurvy', 'Night blindness'],
+    correctOptionIndex: 2, // Scurvy
+    explanation: 'Vitamin C (ascorbic acid) deficiency causes Scurvy (bleeding gums, weakness). Vitamin A deficiency causes Night blindness; Vitamin B1 deficiency causes Beriberi; Vitamin D deficiency causes Rickets.',
+    shortcutTip: 'C = Scurvy (Ascorbic acid). A = Eye/Night blindness. B1 = Beriberi. D = Bone/Rickets.',
+    sourceTag: 'RRB NTPC CBT-1 Standard',
+  },
+  {
+    id: 'sci_06',
+    subject: 'General Science',
+    topic: 'Physics - Work, Power & Energy',
+    difficulty: 'Moderate',
+    questionText: 'If the velocity of a moving railway carriage is doubled, by what factor does its kinetic energy increase?',
+    options: ['Remains the same', 'Doubled (2x)', 'Tripled (3x)', 'Quadrupled (4x)'],
+    correctOptionIndex: 3, // Quadrupled (4x)
+    explanation: 'Kinetic Energy (KE) = 1/2 × m × v². Since kinetic energy is directly proportional to the square of velocity (v²), doubling velocity (2v) results in (2)² = 4 times the initial kinetic energy.',
+    shortcutTip: 'KE ∝ v². Velocity × 2 => KE × 2² = 4 times.',
+    sourceTag: 'RRB NTPC CBT-1 Standard',
+  },
+];

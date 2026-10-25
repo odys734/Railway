@@ -1,0 +1,1107 @@
+🚆 RAILWAY PREP AI — ULTIMATE MASTER BUILD PROMPT
+
+Project: Complete Fresh Android Application | Professional UI/UX | AI-Powered Railway Exam Preparation
+
+Created by Daman | Package: "com.daman.railwayprep"
+
+You are acting as an entire senior product engineering team: Principal Android Architect, Kotlin Engineer, Jetpack Compose Specialist, UI/UX Designer, AI Engineer, Backend Engineer, Database Engineer, QA Automation Engineer, Security Engineer, and Release Engineer.
+
+Your mission is to DESIGN, ENGINEER, TEST, AND DELIVER an exceptionally polished, genuinely functional Android application called Railway Prep AI — Made by Daman.
+
+This is a fresh, independent implementation. Begin with a new project structure and a clean architecture. Do not depend on any old source code, old screens, old implementations, old templates, or old project assumptions. Do not merely redesign an existing screen or produce a prototype.
+
+Build the application from the ground up, including the app icon, branding, first-launch experience, language selection, API configuration, AI-powered question generation, practice engine, CBT mock tests, progress tracking, persistent database, settings, testing, and final APK.
+
+Do not interpret “100000x better” as permission to add useless complexity. Interpret it as a requirement for exceptional visual quality, thoughtful user experience, reliable engineering, comprehensive functionality, and meticulous attention to detail.
+
+---
+
+PART 1 — PRODUCT IDENTITY AND NON-NEGOTIABLE REQUIREMENTS
+
+1.1 Application identity
+
+- Product name: Railway Prep AI
+- Full brand: Railway Prep AI — Made by Daman
+- Android application ID: "com.daman.railwayprep"
+- Primary platform: Android phones
+- Development language: Kotlin
+- UI framework: Jetpack Compose with Material 3
+- Architecture: MVVM with a repository/data layer
+- Database: Room
+- Asynchronous operations: Kotlin Coroutines and Flow
+- Navigation: Type-safe navigation where compatible with the selected libraries
+- Networking: Retrofit/OkHttp or another well-maintained HTTP client
+- Dependency injection: Hilt or a justified lightweight alternative
+- Default visual identity: Premium dark navy with electric teal and restrained blue accents
+- AI provider: Configurable, with Gemini supported
+- Developer credit: Made by Daman
+
+Preserve the specified application ID even though the implementation is entirely new.
+
+1.2 Absolute execution rules
+
+1. Start by inspecting the available development environment, installed Android SDK, Java version, Kotlin tooling, Gradle tooling, and network availability.
+2. Create a completely fresh project in a clearly identified workspace.
+3. Choose mutually compatible stable dependencies and pin appropriate versions.
+4. Build actual functional screens, state management, business logic, persistence, networking, and tests.
+5. Do not produce placeholder buttons, simulated AI responses, fake test results, decorative controls that do nothing, or misleading progress indicators.
+6. Do not stop after generating architecture documents or a design mockup.
+7. Do not ask me to approve every ordinary implementation decision. Make sensible professional decisions autonomously.
+8. Do not fabricate API credentials, successful network calls, exam facts, previous-year questions, or test results.
+9. Never claim that the application is complete unless the implemented features and validation results justify that claim.
+10. If a genuine environmental limitation prevents a task, finish all feasible work and report the exact blocker and a practical next step.
+
+First create "PROJECT_SPEC.md", "ARCHITECTURE.md", "IMPLEMENTATION_PLAN.md", and a meaningful task checklist. Then immediately continue implementation without waiting for approval.
+
+---
+
+PART 2 — BRANDING AND ORIGINAL APP LOGO
+
+Design a distinctive, professional identity specifically for Railway Prep AI.
+
+2.1 Logo concept
+
+Create an original vector-based logo featuring a tasteful combination of:
+
+- A modern railway locomotive or forward-moving railway motif.
+- An intelligent AI-inspired geometric element.
+- A subtle learning or knowledge symbol.
+- Strong, recognizable shapes that remain clear at small icon sizes.
+- A premium navy, teal, and white color palette.
+
+The design should communicate railway examinations, progress, intelligence, confidence, and education without looking childish or cluttered.
+
+Avoid copying the Indian Railways emblem, official railway insignia, existing commercial app logos, or government branding.
+
+2.2 Required branding assets
+
+Create and integrate:
+
+- Android launcher icon.
+- Adaptive foreground and background icons.
+- Monochrome launcher icon.
+- Splash-screen branding.
+- In-app logo.
+- Compact logo for the dashboard toolbar.
+- Optional onboarding illustration.
+- Consistent app typography and iconography.
+
+Prefer clean vector artwork for icons. Use original vector drawables or generated original artwork that is legally suitable for app use.
+
+Create the necessary Android resource files and ensure the launcher icon actually changes after installation.
+
+Use proper Android adaptive-icon safe areas, scalable vector assets, and appropriate splash-screen behavior.
+
+The splash screen must be brief, elegant, and non-blocking. Do not force users to watch an unnecessary animation every time they open the app.
+
+---
+
+PART 3 — FIRST-LAUNCH EXPERIENCE AND API SETUP
+
+The first launch is a critical product experience.
+
+On a fresh installation, the application must open directly into a polished onboarding and API configuration flow. Do not make users search through Settings to discover how to connect the AI.
+
+3.1 First-launch sequence
+
+Implement the following flow:
+
+1. Short branded splash screen.
+2. Welcome screen introducing Railway Prep AI.
+3. Language selection.
+4. AI provider configuration.
+5. API connection verification.
+6. Optional learning preferences.
+7. Personalized dashboard.
+
+The API setup must be required before entering AI-dependent features. If the API is not configured, the app should remain usable for any genuinely offline features, but AI-dependent actions must clearly explain the missing setup.
+
+Do not trap the user in an endless setup loop. Provide validation, error recovery, and a way to reopen configuration.
+
+3.2 AI provider setup screen
+
+Create a premium API setup screen with:
+
+- Provider selector.
+- Gemini API option.
+- Custom compatible backend/API endpoint option where supported.
+- API key input.
+- Model identifier field.
+- Backend URL field for proxy mode.
+- Password-style visibility toggle.
+- Clear configuration button.
+- Test connection button.
+- Loading indicator while connecting.
+- Connection success and failure states.
+- Clear diagnostic messages that never expose secrets.
+- Save configuration button.
+- Edit configuration later in Settings.
+- Documentation and secure configuration guidance.
+
+Default model identifiers must be validated against the selected provider's currently supported models. Do not assume that an old model name is still available.
+
+If a backend proxy is configured, use the proxy and keep the provider key on the server. If direct Gemini access is offered, explain that a key stored on a user's phone is not equivalent to server-side secret protection.
+
+3.3 API configuration behavior
+
+On the first installation:
+
+- Show API setup immediately after language selection.
+- Validate required fields before attempting a request.
+- Validate network connectivity.
+- Perform a real minimal API request when the user selects Test Connection.
+- Show actual results from the request.
+- Save configuration only after valid input and an explicit user action.
+- Never claim connection success without receiving a valid response.
+- Preserve valid configuration across normal app restarts.
+- Allow changing provider, endpoint, and model later.
+- Clear credentials when the user explicitly removes them.
+
+Do not silently substitute a fake response when the API fails.
+
+API security
+
+Use Android Keystore-backed encryption for locally persisted direct-provider credentials where appropriate, with encrypted storage and a careful backup policy.
+
+Never hardcode credentials in source code, resources, BuildConfig distributed with the APK, public configuration files, or Git.
+
+Never log the API key or include it in analytics, crash reports, URLs, exception text, or screenshots.
+
+For a production multi-user deployment, implement or document a secure backend proxy with server-side secrets, authentication, request validation, quotas, rate limits, and abuse protection.
+
+A direct API key entered by an individual user is a personal-use configuration option, not a claim of production-grade secret isolation.
+
+---
+
+PART 4 — LANGUAGE SYSTEM
+
+The app must not be permanently locked to Hindi.
+
+Implement a proper language selector available during onboarding, in Settings, and from the appropriate app menu.
+
+4.1 Initial language options
+
+At minimum, provide:
+
+1. हिन्दी
+2. English
+3. Hinglish
+
+Add further languages only when the interface translations can be implemented consistently.
+
+4.2 Translation requirements
+
+- Translate all buttons, navigation items, headings, labels, error messages, empty states, dialogs, settings, onboarding screens, and result screens.
+- Do not translate only the home screen while leaving the rest of the app in another language.
+- Use Android string resources or an appropriate localization architecture.
+- Preserve Hindi characters correctly.
+- Choose readable fonts and layouts for Devanagari.
+- Support language-specific line wrapping.
+- Handle system locale and in-app locale intentionally.
+- Avoid hardcoded interface strings in Kotlin composables.
+- Preserve the user's selected language after app restart.
+
+For Hinglish, write naturally in Roman Hindi, not mechanically transliterated text.
+
+4.3 AI language behavior
+
+The AI Tutor should respond in the selected language by default.
+
+Include a per-conversation option to switch response language when useful.
+
+For educational explanations, favor simple, age-appropriate language and clear reasoning.
+
+Question text should remain in its original language when required for an authentic source. Clearly distinguish original source text from translated explanations.
+
+---
+
+PART 5 — PREMIUM UI/UX DESIGN SYSTEM
+
+Create a cohesive design system before implementing all screens.
+
+The interface must look like a carefully designed modern educational product, not a generic generated template.
+
+5.1 Visual direction
+
+Use:
+
+- Deep navy backgrounds.
+- Layered dark surfaces.
+- Restrained teal highlights.
+- Excellent contrast.
+- Consistent typography.
+- Subtle gradients used sparingly.
+- Clean cards with intentional spacing.
+- Refined icons.
+- Clear content hierarchy.
+- Consistent rounded corners.
+- Meaningful loading and transition states.
+- Tasteful micro-interactions.
+- High-quality empty states.
+- Consistent visual feedback.
+
+Create a coherent palette, typography scale, spacing system, shape system, elevation system, and component library.
+
+Provide both Dark and Light themes, with a System Default option.
+
+The default theme is Dark Navy + Teal.
+
+Do not use excessive neon effects, glowing borders everywhere, giant gradients, random emojis as interface icons, unnecessary glass effects, or cluttered dashboards.
+
+5.2 Screen design standards
+
+Every screen must have:
+
+- A clear primary purpose.
+- One visually dominant primary action when appropriate.
+- Appropriate content hierarchy.
+- Consistent margins and spacing.
+- Accessible text sizes.
+- Readable disabled states.
+- Proper keyboard behavior.
+- Scroll support for smaller phones.
+- Correct system-bar appearance.
+- Status bar and navigation bar integration.
+- Safe handling of display cutouts and edge-to-edge layouts.
+- Loading, error, empty, and success states.
+- No overlapping content or clipped buttons.
+
+Use Material 3 components where appropriate, customized to match the brand.
+
+5.3 Responsive behavior
+
+The app must work on:
+
+- Small Android phones.
+- Standard phones.
+- Larger phones.
+- Different display densities.
+- Portrait orientation.
+- Landscape where practical.
+
+Support accessibility, screen readers, content descriptions, dynamic text scaling, adequate touch targets, and visible focus states.
+
+Do not depend on a single hardcoded screen size.
+
+5.4 Motion and interaction
+
+Add tasteful animations for:
+
+- Screen transitions.
+- Question selection feedback.
+- Progress changes.
+- Loading indicators.
+- Result summaries.
+- Success and error messages.
+
+Respect reduced-motion or accessibility preferences where possible.
+
+Do not let animation block the exam timer, keyboard, scrolling, or essential actions.
+
+---
+
+PART 6 — HOME DASHBOARD
+
+Build a visually exceptional dashboard with real data rather than hardcoded statistics.
+
+The dashboard should contain:
+
+Header
+
+- Brand mark.
+- Personalized greeting where a display name has been configured.
+- Language control.
+- Notification or information entry only if it performs a real function.
+- Settings shortcut.
+
+Main hero section
+
+- Welcome to Railway Prep AI.
+- Clear primary action: Start Learning.
+- Secondary action: Start Mock Test.
+- Daily study progress based on actual saved data.
+
+Feature cards
+
+- Practice Questions.
+- Full Mock Test.
+- AI Tutor.
+- Previous Results.
+- Progress and Analytics.
+- Official Notification.
+- Saved Questions.
+- Study Goals.
+
+Progress section
+
+- Questions attempted.
+- Correct answers.
+- Accuracy.
+- Mock tests completed.
+- Study activity.
+- Subject-wise strengths and weaknesses.
+
+All values must be calculated from real database records.
+
+For new users, show a beautiful, helpful empty state rather than invented scores or completed tests.
+
+Navigation
+
+Use a simple, understandable navigation structure suitable for mobile.
+
+For example:
+
+- Home.
+- Practice.
+- Mock Test.
+- AI Tutor.
+- Profile/More.
+
+Keep essential exam actions easy to reach.
+
+Avoid excessive bottom-navigation items and duplicate navigation destinations.
+
+---
+
+PART 7 — AI-POWERED QUESTION GENERATION
+
+This is a core feature, not an optional demonstration.
+
+The application must generate useful original railway-exam practice questions through a real configured AI provider.
+
+7.1 Question-generation screen
+
+Allow the learner to choose:
+
+- Subject.
+- Topic.
+- Difficulty.
+- Number of questions.
+- Question language.
+- Explanation language.
+- Practice or timed-quiz mode.
+
+Suggested subjects:
+
+1. Mathematics.
+2. General Intelligence and Reasoning.
+3. General Awareness.
+4. General Science.
+
+Provide topic selectors and reasonable defaults.
+
+Allow mixed-topic generation as well as subject-specific generation.
+
+7.2 Question-generation API
+
+Implement a dedicated question-generation service with:
+
+- Structured prompts.
+- Structured response parsing.
+- JSON schema validation.
+- Question count validation.
+- Answer-index validation.
+- Duplicate detection.
+- Empty-response handling.
+- Retry behavior for transient failures.
+- Timeout handling.
+- Rate-limit handling.
+- Model and provider configuration.
+- Safe error messages.
+- Cancellation support where practical.
+
+Ask the AI provider to return structured question objects, including:
+
+- Stable local identifier.
+- Subject.
+- Topic.
+- Difficulty.
+- Question text.
+- Four answer options.
+- Correct answer.
+- Explanation.
+- Optional solving steps.
+- Source classification.
+- Language metadata.
+
+Validate the response before inserting questions into the database.
+
+Never execute arbitrary model-generated code or SQL.
+
+Never blindly trust an AI-generated answer. Validate structural correctness and run deterministic checks for calculations where practical.
+
+For mathematically verifiable questions, add answer-consistency checks whenever possible.
+
+If a response is invalid, request a corrected response or discard the invalid items safely.
+
+Do not silently accept fewer questions than requested. Explain partial generation when it occurs.
+
+7.3 Generation quality
+
+Generate original practice material aligned with the selected exam and difficulty.
+
+Do not call AI-generated questions official previous-year questions.
+
+Use labels such as:
+
+- AI-generated practice.
+- Reviewed practice.
+- Verified official source.
+
+Use the official label only when the source and its question are genuinely verified.
+
+For General Awareness, clearly indicate when facts may be time-sensitive.
+
+For current-affairs questions, use a verified source if the implementation supports one. Otherwise, avoid unsupported claims of current accuracy.
+
+7.4 Local question bank
+
+Create a reliable local question bank that can contain:
+
+- Built-in reviewed questions.
+- AI-generated questions.
+- User-saved questions.
+- Imported questions from validated data sources.
+
+Keep provenance, creation date, language, topic, difficulty, and verification status.
+
+Allow filtering, deduplication, removal, and regeneration.
+
+7.5 Cost and performance controls
+
+AI generation can consume API quota or money.
+
+Implement:
+
+- User-visible generation counts.
+- Configurable maximum question count per request.
+- Request cancellation.
+- Duplicate-request prevention.
+- Rate limiting.
+- Reasonable response-size limits.
+- A clear retry action.
+- Optional reuse of already generated questions.
+- Confirmation for unusually large requests.
+- Honest quota and provider error messages.
+
+Do not repeatedly regenerate questions in the background without the user's knowledge.
+
+---
+
+PART 8 — PRACTICE ENGINE
+
+Implement a fully functional practice system.
+
+Required features
+
+- Subject-wise practice.
+- Topic-wise practice.
+- Mixed practice.
+- Difficulty selection.
+- AI-generated question practice.
+- Built-in question practice.
+- Four selectable options.
+- Clear answer-selection states.
+- Submit answer.
+- Correct/incorrect feedback.
+- Explanation.
+- Step-by-step solution when available.
+- Next and previous navigation where appropriate.
+- Question progress.
+- Restart practice.
+- Review incorrect answers.
+- Save/bookmark a question.
+- Remove bookmark.
+- Report a questionable question.
+- Track attempted and unanswered questions.
+- Calculate score and accuracy correctly.
+- Save progress.
+- Resume supported sessions.
+- Show a final summary.
+
+Do not reveal the correct answer before submission in a test mode unless the learner has explicitly selected an instant-feedback practice mode.
+
+Ensure that switching questions does not accidentally erase a selected answer.
+
+Ensure that submitting an answer twice does not award duplicate marks.
+
+Ensure that restarting a session creates a clean session and preserves historical results as appropriate.
+
+---
+
+PART 9 — CBT MOCK EXAM SYSTEM
+
+Implement a serious exam simulator.
+
+9.1 Exam configuration
+
+Provide configurable exam length and duration.
+
+Use a full CBT-1 configuration of 100 questions and 90 minutes only after verifying that it matches the applicable notification.
+
+Implement CBT-2 according to the selected, verified exam scheme. Do not assume CBT-1 and CBT-2 have identical question counts, timings, or marking rules.
+
+Allow shorter practice mocks.
+
+Display the chosen configuration before starting the exam.
+
+9.2 Exam interface
+
+Create a clean, distraction-free exam screen with:
+
+- Countdown timer.
+- Question number.
+- Question text.
+- Four answer options.
+- Previous button.
+- Next button.
+- Clear response.
+- Mark for review.
+- Question palette.
+- Answered/unanswered/review status.
+- Section navigation if applicable.
+- Submit test button.
+- Confirmation dialog.
+
+The question palette must represent the actual saved answer and review states.
+
+Do not use color alone to convey status; add text, icons, or accessible descriptions.
+
+9.3 Timer correctness
+
+Use a monotonic time source or a robust deadline-based timer strategy.
+
+Do not decrement a counter blindly and assume it remains correct when the app goes into the background.
+
+Handle activity recreation, app backgrounding, and process restoration appropriately.
+
+Prevent duplicate timer jobs.
+
+When time expires:
+
+- Automatically finalize the test.
+- Prevent further answer modifications.
+- Save the result exactly once.
+- Display the result screen.
+
+9.4 Scoring
+
+Support configurable scoring rules.
+
+For the applicable scheme, use:
+
+- Correct answer: +1.
+- Incorrect answer: −1/3.
+- Unanswered answer: 0.
+
+Use precise decimal arithmetic or a carefully tested numeric representation.
+
+Do not round each question's penalty prematurely.
+
+Test boundary cases, zero answers, fully correct papers, fully incorrect papers, and partially answered papers.
+
+Display the final score consistently with the scoring rules.
+
+9.5 Result screen
+
+Include:
+
+- Total score.
+- Maximum possible marks.
+- Attempted questions.
+- Correct answers.
+- Incorrect answers.
+- Unanswered questions.
+- Accuracy.
+- Time taken.
+- Subject-wise performance.
+- Topic-wise weak areas where sufficient data exists.
+- Review answers.
+- Retake test.
+- Return to dashboard.
+
+Never label a mock-test result as an official RRB result.
+
+---
+
+PART 10 — AI TUTOR
+
+Build an actual, responsive, API-powered tutoring experience.
+
+Features
+
+- Natural chat interface.
+- Hindi, English, and Hinglish.
+- Conversation history during a session.
+- Step-by-step Maths solutions.
+- Reasoning explanations.
+- General Awareness and General Science explanations.
+- Explanation of a selected practice question.
+- Explain why an answer is correct or incorrect.
+- Generate additional practice questions.
+- Summarize a topic.
+- Make revision notes.
+- Give short hints when the user requests hints.
+- Clear conversation.
+- Copy response.
+- Loading and cancellation behavior where supported.
+- Retry failed requests.
+- Network timeout handling.
+- Provider rate-limit handling.
+- Helpful error messages.
+- Proper empty input validation.
+- Correct keyboard and scroll behavior.
+
+Allow the user to send the current question to the tutor from the Practice and Mock Test review screens.
+
+Pass only the relevant question and necessary context.
+
+The tutor must not silently change the user's selected answer or alter a finalized mock-test result.
+
+AI honesty
+
+If the provider is unavailable, show an honest error state.
+
+Never substitute a fabricated response while indicating that the real AI replied.
+
+Clearly distinguish AI-generated explanations from verified official information.
+
+For uncertain or time-sensitive facts, communicate uncertainty and recommend checking an authoritative source.
+
+---
+
+PART 11 — OFFICIAL NOTIFICATION AND STUDY REFERENCE
+
+Support the supplied file "CEN_07_2026_NTPC_UG.pdf" if it is available in the workspace or provided by the user.
+
+Do not assume the file exists just because its name appears in this specification.
+
+If it is available:
+
+1. Read the actual PDF.
+2. Identify the notification number and relevant dates from its contents.
+3. Extract useful information accurately.
+4. Preserve source-page references.
+5. Make extracted information searchable.
+6. Separate official-source facts from AI-generated explanations.
+7. Handle extraction errors and missing text honestly.
+
+Build an official reference section containing applicable information such as:
+
+- Important dates.
+- Eligibility.
+- Age limits and relaxations.
+- Educational qualifications.
+- Vacancies.
+- Examination pattern.
+- Negative marking.
+- Relevant medical standards.
+- Application instructions.
+
+Only display facts that the source actually supports.
+
+Do not silently correct, update, or replace source content with assumptions.
+
+Where a current official rule must be verified, make that verification explicit and identify the authoritative source.
+
+Do not represent a notification PDF as the entire study syllabus.
+
+If PDF processing is not possible on the device, use an appropriate preprocessing/import pipeline or a validated bundled dataset rather than blocking the rest of the application.
+
+---
+
+PART 12 — DATABASE AND OFFLINE BEHAVIOR
+
+Use Room for structured persistent data.
+
+Design sensible entities, relationships, indexes, and migrations.
+
+Potential entities include:
+
+- GeneratedQuestion.
+- QuestionOption, if a separate entity is justified.
+- PracticeSession.
+- PracticeAnswer.
+- MockTest.
+- MockTestAnswer.
+- MockTestResult.
+- SavedQuestion.
+- TopicProgress.
+- UserPreferences.
+- ConversationMessage, if local conversation persistence is enabled.
+- NotificationReference.
+
+Avoid unnecessary normalization and avoid storing the same information redundantly without a clear reason.
+
+Use transactions for related database updates.
+
+Use stable identifiers.
+
+Add appropriate database versioning and non-destructive migrations.
+
+Offline behavior
+
+When the internet is unavailable:
+
+- Previously saved questions should remain accessible.
+- Existing local practice should work.
+- Saved results should remain accessible.
+- The user should be told which AI features require a connection.
+- Queued operations should not be presented as completed AI requests.
+
+If question generation fails, do not lose existing saved questions or completed results.
+
+Cache suitable results when helpful, while avoiding stale-data confusion.
+
+---
+
+PART 13 — SETTINGS AND PERSONALIZATION
+
+Create a professional Settings screen with functional controls for:
+
+- Language.
+- Theme: Dark, Light, System.
+- AI provider.
+- API key or backend configuration.
+- Model selection.
+- Test API connection.
+- Clear API credentials.
+- Question language.
+- Explanation language.
+- Default question difficulty.
+- Mock-test preferences.
+- Data export where appropriate.
+- Clear generated question cache.
+- Clear conversation history.
+- Reset local data with confirmation.
+- About the app.
+- Privacy information.
+- Open-source acknowledgements where applicable.
+
+Persist settings correctly.
+
+A reset must not accidentally delete data without an explicit confirmation.
+
+Provide a clear distinction between clearing cached generated questions and deleting all user data.
+
+Do not add fake notification toggles, nonfunctional profile fields, or unsupported account features.
+
+---
+
+PART 14 — PROGRESS, ANALYTICS, AND LEARNING TOOLS
+
+Build useful, data-driven progress screens.
+
+Show:
+
+- Total questions attempted.
+- Correct and incorrect counts.
+- Accuracy.
+- Practice sessions completed.
+- Mock-test history.
+- Subject-wise performance.
+- Topic-wise performance when there is sufficient data.
+- Recent study activity.
+- Saved questions.
+- Incorrect-answer revision.
+- Weak-topic recommendations.
+- Study goals if implemented.
+
+All metrics must be calculated from real persisted records.
+
+Use accessible charts or simple visual summaries that remain readable on small screens.
+
+Do not show invented streaks, fabricated scores, fake achievements, or misleading comparisons.
+
+Provide a useful first-time empty state.
+
+Allow the user to revise incorrect questions without forcing them to repeat the entire mock test.
+
+---
+
+PART 15 — BACKEND AND AI SERVICE ARCHITECTURE
+
+If a backend is needed for secure API integration, implement a separate, documented backend service rather than pretending that a local Android application can securely hide provider credentials.
+
+Use a maintainable API contract.
+
+Possible endpoints:
+
+- "GET /health"
+- "POST /api/ai/chat"
+- "POST /api/questions/generate"
+- "POST /api/ai/validate-connection", where suitable for the architecture
+- "GET /api/config" only for safe, non-secret configuration
+
+These are proposed contracts, not claims that an existing server is already deployed.
+
+Requirements:
+
+- Request validation.
+- Response validation.
+- Authentication where appropriate.
+- Rate limiting.
+- Timeouts.
+- Safe error responses.
+- Provider abstraction.
+- Server-side API key management.
+- Secret redaction.
+- Logging without sensitive content.
+- Abuse and cost controls.
+- Health checks.
+- Environment-based configuration.
+- Documentation.
+- Tests.
+
+Do not return server secrets to the Android client.
+
+Do not create an unauthenticated, publicly exposed endpoint that permits unrestricted use of a paid AI provider.
+
+If the backend cannot be deployed in the current environment, build and test the available components and clearly document the deployment requirements.
+
+---
+
+PART 16 — RELIABILITY, PERFORMANCE, AND ACCESSIBILITY
+
+The app must remain responsive.
+
+Requirements:
+
+- Avoid main-thread network requests.
+- Avoid blocking database operations on the main thread.
+- Avoid duplicate API requests caused by recomposition.
+- Avoid leaking activities or coroutine scopes.
+- Handle cancellation.
+- Handle activity recreation.
+- Avoid unnecessary database reads.
+- Avoid generating questions repeatedly on every screen render.
+- Keep the question UI responsive.
+- Prevent stale asynchronous results from overwriting newer state.
+- Handle empty datasets.
+- Handle malformed JSON.
+- Handle HTTP errors.
+- Handle unexpected provider responses.
+- Handle missing API configuration.
+- Handle corrupted or outdated local data safely.
+
+Use appropriate lifecycle-aware collection and ViewModel state.
+
+Add meaningful logging for debugging without recording secrets or unnecessary personal information.
+
+Check accessibility labels, contrast, touch targets, and screen-reader behavior.
+
+---
+
+PART 17 — COMPREHENSIVE TESTING
+
+Create automated tests for critical logic and user flows.
+
+Unit tests
+
+Test:
+
+- Correct-answer scoring.
+- Incorrect-answer penalties.
+- Unanswered scoring.
+- Accuracy calculation.
+- Decimal precision.
+- Question response parsing.
+- Invalid answer indexes.
+- Duplicate question detection.
+- AI response validation.
+- Empty AI responses.
+- API error mapping.
+- Configuration validation.
+- Session completion.
+- Duplicate submission prevention.
+- Timer expiry.
+- Question navigation.
+- Mark-for-review state.
+- Answer changes.
+- Repository behavior.
+- Database migrations.
+- Result persistence.
+- Language preference persistence.
+
+UI tests
+
+Where the environment supports Android instrumentation, test:
+
+- First-launch onboarding.
+- Language selection.
+- API setup validation.
+- API configuration editing.
+- Dashboard navigation.
+- Practice question selection.
+- Feedback after answer submission.
+- Mock-test question navigation.
+- Submit confirmation.
+- Results and answer review.
+- AI Tutor loading and error states.
+- Theme switching.
+- Language switching.
+
+Use fake providers and test fixtures for deterministic automated tests. Label those tests as tests; never expose fake-provider responses as real AI output in the application.
+
+Test real API integration separately when valid credentials and network access are available.
+
+Do not disable failing tests merely to produce a green report.
+
+---
+
+PART 18 — BUILD, RELEASE, AND DELIVERABLES
+
+Produce a complete, buildable Android project and a verified debug APK.
+
+Requirements:
+
+1. Confirm the correct Android application ID.
+2. Run Gradle dependency resolution.
+3. Run unit tests.
+4. Run Kotlin compilation.
+5. Run available lint checks.
+6. Run instrumentation tests if a suitable emulator/device is available.
+7. Assemble the debug APK.
+8. Verify the APK exists and has a nonzero size.
+9. Inspect build output for errors.
+10. Install and launch it if the environment permits.
+11. Verify the launcher icon and branding.
+12. Test key navigation and flows.
+13. Provide the actual absolute APK path.
+14. Provide the actual APK size.
+15. Record the test results.
+16. Document remaining limitations.
+
+Preferred output filename:
+
+"RailwayPrepAI-MadeByDaman.apk"
+
+If the requested Downloads directory is writable, copy the finished APK to:
+
+"/sdcard/Download/RailwayPrepAI-MadeByDaman.apk"
+
+If it is not writable or unavailable, use a verified alternative output path.
+
+Never invent a file path or claim an APK was built when it was not.
+
+Required deliverables
+
+- Complete Android project source.
+- Original app icon and required branding assets.
+- Functional first-launch setup.
+- Complete localization resources.
+- Functional practice engine.
+- Functional mock-test engine.
+- AI question-generation integration.
+- AI Tutor integration.
+- Room persistence.
+- Settings and progress tracking.
+- Unit and UI tests where supported.
+- "README.md".
+- "PROJECT_SPEC.md".
+- "ARCHITECTURE.md".
+- "IMPLEMENTATION_PLAN.md".
+- "IMPLEMENTATION_REPORT.md".
+- Backend source and deployment documentation if a backend is implemented.
+- Verified debug APK.
+
+---
+
+PART 19 — REQUIRED EXECUTION WORKFLOW
+
+Follow this exact workflow:
+
+Phase A — Environment and requirements
+
+Inspect the environment, establish the workspace, verify available tools, and write the implementation specification.
+
+Phase B — Branding and design system
+
+Create the logo, launcher assets, theme, typography, reusable components, and navigation foundation.
+
+Phase C — First launch and configuration
+
+Implement onboarding, localization, API setup, credential storage, validation, and connection testing.
+
+Phase D — Data foundation
+
+Implement Room entities, DAOs, migrations, repositories, preferences, and test fixtures.
+
+Phase E — Learning engine
+
+Implement question-bank management, practice sessions, scoring, saved questions, and progress tracking.
+
+Phase F — Examination engine
+
+Implement CBT-style exams, timer handling, question palette, review states, submission, and results.
+
+Phase G — AI integration
+
+Implement real provider connectivity, structured question generation, tutor chat, error handling, and secure configuration.
+
+Phase H — Product completion
+
+Implement dashboard, analytics, Settings, notification references, empty states, accessibility, and responsive layouts.
+
+Phase I — Quality assurance
+
+Run tests, resolve defects, verify integration points, test offline behavior, and check critical UI flows.
+
+Phase J — Delivery
+
+Build and verify the APK, prepare the documentation, and deliver a factual implementation report.
+
+Continue automatically between phases whenever the environment permits.
+
+Do not confuse creating files with implementing working functionality.
+
+Do not confuse compilation success with a successful real-device test.
+
+Do not confuse API configuration UI with successful AI integration.
+
+Do not confuse an AI-generated question with a verified official question.
+
+---
+
+PART 20 — FINAL ACCEPTANCE CRITERIA
+
+The implementation is complete only when the applicable criteria below have been verified:
+
+- [ ] Fresh project exists with application ID "com.daman.railwayprep".
+- [ ] Original launcher logo and branding are integrated.
+- [ ] First launch presents language selection and AI configuration.
+- [ ] API configuration is validated and can be edited later.
+- [ ] At least Hindi, English, and Hinglish are implemented consistently.
+- [ ] Dark, Light, and System themes work.
+- [ ] Dashboard uses actual data.
+- [ ] Practice questions can be answered and reviewed.
+- [ ] AI can generate and validate original practice questions through a real configured provider.
+- [ ] Generated questions can be saved and used in practice.
+- [ ] Mock exams support timer, navigation, answer changes, review marking, and submission.
+- [ ] Scoring and penalties are accurate.
+- [ ] AI Tutor returns actual provider responses when correctly configured.
+- [ ] AI errors are displayed honestly.
+- [ ] Room persists relevant data across app restarts.
+- [ ] Progress metrics reflect actual records.
+- [ ] Critical tests pass.
+- [ ] The debug APK builds successfully.
+- [ ] The APK path and size have been verified.
+- [ ] Documentation accurately describes setup and limitations.
+- [ ] No real credentials are hardcoded into the distributed APK.
+- [ ] No essential feature is falsely represented as complete.
+
+If any criterion remains unmet, list it explicitly in the final report.
+
+FINAL COMMAND
+
+Start building Railway Prep AI from a completely fresh implementation now.
+
+Make professional design decisions. Build the original logo. Create the premium UI. Implement the complete application architecture. Connect the real AI provider. Generate original practice questions. Make the practice and mock-test systems functional. Persist data. Implement localization. Test everything that the environment supports. Fix failures. Build the APK. Verify the deliverables.
+
+Do not stop at planning, code snippets, or mockups.
+
+Do not report success without evidence.
+
+Deliver the best complete, maintainable, polished Railway Prep AI application that the available development environment can genuinely support, with all remaining external requirements clearly documented.
+
+Product vision: Railway Prep AI — Learn Smarter. Practice Better. Prepare with Confidence. Made by Daman.

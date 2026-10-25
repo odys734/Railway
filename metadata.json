@@ -1,0 +1,6 @@
+{
+  "name": "Railway Prep AI",
+  "description": "Professional AI-powered Railway Exam (RRB NTPC, Group D, ALP) preparation platform with CBT mock tests, practice engine, AI tutor, and authentic official syllabus guide. Made by Daman.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
