@@ -1,6 +1,0 @@
-<resources>
-    <style name="Theme.RailwayPrepAI" parent="android:Theme.Material.NoActionBar">
-        <item name="android:statusBarColor">@color/navy_primary</item>
-        <item name="android:navigationBarColor">@color/navy_primary</item>
-    </style>
-</resources>

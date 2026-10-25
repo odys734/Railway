@@ -8,7 +8,6 @@ import {
   AlertCircle, 
   ChevronRight, 
   ChevronLeft, 
-  RotateCcw, 
   Zap, 
   HelpCircle,
   Filter,
@@ -36,17 +35,13 @@ export const PracticeView: React.FC<PracticeViewProps> = ({
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
-  const [aiGenCount, setAiGenCount] = useState<number>(5);
   const [generationMsg, setGenerationMsg] = useState<string>('');
-  const [reportedQuestionId, setReportedQuestionId] = useState<string | null>(null);
   const [reportedMsg, setReportedMsg] = useState<string>('');
 
-  // Load all available questions
   const allQuestions = useMemo(() => {
     return StorageService.getAllQuestions();
   }, [isGenerating]);
 
-  // Filtered question set
   const filteredQuestions = useMemo(() => {
     return allQuestions.filter(q => {
       const matchSubject = selectedSubject === 'All' || q.subject === selectedSubject;
@@ -58,13 +53,11 @@ export const PracticeView: React.FC<PracticeViewProps> = ({
   const currentQuestion: Question | undefined = filteredQuestions[currentIndex];
   const isBookmarked = currentQuestion ? StorageService.getBookmarkedIds().includes(currentQuestion.id) : false;
 
-  // Handle Option Selection
   const handleSelectOption = (idx: number) => {
     if (isSubmitted) return;
     setSelectedOption(idx);
   };
 
-  // Handle Submit Answer
   const handleSubmitAnswer = () => {
     if (selectedOption === null || !currentQuestion) return;
     setIsSubmitted(true);
@@ -97,7 +90,6 @@ export const PracticeView: React.FC<PracticeViewProps> = ({
     }
   };
 
-  // Next & Prev Question
   const handleNext = () => {
     if (currentIndex < filteredQuestions.length - 1) {
       setCurrentIndex(currentIndex + 1);
@@ -116,26 +108,21 @@ export const PracticeView: React.FC<PracticeViewProps> = ({
     }
   };
 
-  // Toggle Bookmark
   const handleToggleBookmark = () => {
     if (!currentQuestion) return;
     StorageService.toggleBookmark(currentQuestion.id);
-    // Force re-render
     setCurrentIndex(currentIndex);
   };
 
-  // Report Question
   const handleReport = () => {
     if (!currentQuestion) return;
-    setReportedQuestionId(currentQuestion.id);
     setReportedMsg('Thank you. Question flagged for pedagogical review.');
     setTimeout(() => setReportedMsg(''), 4000);
   };
 
-  // AI Question Generation
   const handleGenerateAiQuestions = async () => {
     setIsGenerating(true);
-    setGenerationMsg('Contacting Gemini 3.8 Flash to craft authentic Railway questions...');
+    setGenerationMsg('Contacting Gemini 3.8 Flash to generate authentic Railway practice questions...');
 
     const targetSubj: Subject = selectedSubject === 'All' ? 'Mathematics' : selectedSubject;
     const targetDiff: Difficulty = selectedDifficulty === 'All' ? 'Moderate' : selectedDifficulty;
@@ -144,14 +131,13 @@ export const PracticeView: React.FC<PracticeViewProps> = ({
       subject: targetSubj,
       topic: 'Mixed RRB NTPC Concepts',
       difficulty: targetDiff,
-      count: aiGenCount,
+      count: 5,
       language: preferences.language,
     });
 
     setIsGenerating(false);
     if (res.success && res.questions.length > 0) {
       setGenerationMsg(`Successfully added ${res.questions.length} AI-generated questions to your bank!`);
-      // Jump to the newly added questions
       setTimeout(() => {
         setGenerationMsg('');
         setSelectedSubject(targetSubj);
@@ -166,44 +152,38 @@ export const PracticeView: React.FC<PracticeViewProps> = ({
   };
 
   return (
-    <div className="space-y-6 pb-20 animate-fadeIn">
-      {/* Title & Filter Header */}
-      <div className="bg-[#0A1128] border border-slate-800 rounded-2xl p-4 sm:p-5 space-y-4">
+    <div className="space-y-6 pb-32 animate-fadeIn">
+      {/* Control Card: Filters & AI Generator */}
+      <div className="bg-[#0A1128] border border-slate-800 rounded-3xl p-5 sm:p-6 space-y-4 shadow-xl">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h2 className="text-lg font-black text-white flex items-center gap-2">
+            <h1 className="text-xl font-black text-white flex items-center gap-2 tracking-tight">
               <BookOpen className="w-5 h-5 text-cyan-400" />
               {t.practice.title}
-            </h2>
-            <p className="text-xs text-slate-400">
+            </h1>
+            <p className="text-xs text-slate-400 mt-0.5">
               {t.practice.subtitle}
             </p>
           </div>
 
-          {/* AI Generator CTA */}
           <button
             onClick={handleGenerateAiQuestions}
             disabled={isGenerating}
-            className="py-2 px-3.5 rounded-xl font-bold text-xs bg-gradient-to-r from-cyan-500 to-teal-400 hover:from-cyan-400 hover:to-teal-300 text-slate-950 flex items-center gap-2 shadow-md shadow-cyan-500/20 transition disabled:opacity-50"
+            className="py-2.5 px-4 rounded-xl font-extrabold text-xs bg-gradient-to-r from-cyan-400 to-teal-400 hover:from-cyan-300 hover:to-teal-300 text-slate-950 flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20 active:scale-95 transition-all disabled:opacity-50"
           >
             <Sparkles className="w-4 h-4 text-slate-950" />
-            {isGenerating ? t.practice.generating : t.practice.generateAiBtn}
+            <span>{isGenerating ? t.practice.generating : t.practice.generateAiBtn}</span>
           </button>
         </div>
 
         {generationMsg && (
-          <div className="p-2.5 rounded-xl bg-cyan-950/70 border border-cyan-800/60 text-xs text-cyan-300 font-medium animate-fadeIn">
+          <div className="p-3 rounded-xl bg-cyan-950/70 border border-cyan-800 text-xs text-cyan-300 font-medium">
             {generationMsg}
           </div>
         )}
 
-        {/* Filter Pills */}
-        <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-800/80">
-          <span className="text-xs font-semibold text-slate-400 flex items-center gap-1 mr-1">
-            <Filter className="w-3.5 h-3.5" /> Filter:
-          </span>
-
-          {/* Subject Pills */}
+        {/* Filter Bar with Horizontal Scrolling */}
+        <div className="flex items-center gap-2 pt-2 border-t border-slate-800/80 overflow-x-auto no-scrollbar">
           {(['All', 'Mathematics', 'General Intelligence & Reasoning', 'General Awareness', 'General Science'] as const).map((sub) => (
             <button
               key={sub}
@@ -213,17 +193,16 @@ export const PracticeView: React.FC<PracticeViewProps> = ({
                 setSelectedOption(null);
                 setIsSubmitted(false);
               }}
-              className={`px-2.5 py-1 rounded-lg text-xs font-medium transition ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all duration-150 ${
                 selectedSubject === sub
-                  ? 'bg-cyan-500 text-slate-950 font-bold'
-                  : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                  ? 'bg-cyan-500 text-slate-950 shadow-sm'
+                  : 'bg-slate-900/80 text-slate-400 hover:text-white border border-slate-800'
               }`}
             >
               {sub === 'General Intelligence & Reasoning' ? 'Reasoning' : sub}
             </button>
           ))}
 
-          {/* Difficulty Dropdown */}
           <select
             value={selectedDifficulty}
             onChange={(e) => {
@@ -232,9 +211,9 @@ export const PracticeView: React.FC<PracticeViewProps> = ({
               setSelectedOption(null);
               setIsSubmitted(false);
             }}
-            className="bg-slate-900 border border-slate-800 text-xs text-slate-300 rounded-lg px-2 py-1 focus:outline-none cursor-pointer ml-auto"
+            className="bg-slate-900 border border-slate-800 text-xs text-slate-300 rounded-xl px-2.5 py-1.5 focus:outline-none cursor-pointer ml-auto shrink-0 font-medium"
           >
-            <option value="All">All Difficulties</option>
+            <option value="All">All Levels</option>
             <option value="Easy">Easy</option>
             <option value="Moderate">Moderate</option>
             <option value="Hard">Hard / Exam Level</option>
@@ -244,65 +223,59 @@ export const PracticeView: React.FC<PracticeViewProps> = ({
 
       {/* Main Question Display */}
       {filteredQuestions.length === 0 ? (
-        <div className="text-center py-12 px-4 bg-[#0A1128] border border-slate-800 rounded-2xl space-y-3">
+        <div className="text-center py-16 px-4 bg-[#0A1128] border border-slate-800 rounded-3xl space-y-3 shadow-md">
           <HelpCircle className="w-10 h-10 text-slate-600 mx-auto" />
-          <h3 className="text-sm font-bold text-white">No questions match this filter</h3>
+          <h3 className="text-base font-bold text-white">No questions in this filter</h3>
           <p className="text-xs text-slate-400 max-w-sm mx-auto">
-            Try choosing 'All' or click the "Generate AI Questions" button above to create fresh questions with Gemini!
+            Switch your filter or tap "Generate AI Questions" to craft brand-new practice drills!
           </p>
           <button
             onClick={handleGenerateAiQuestions}
-            className="py-2 px-4 rounded-xl text-xs font-bold bg-cyan-500 text-slate-950 hover:bg-cyan-400"
+            className="py-2.5 px-5 rounded-xl text-xs font-bold bg-cyan-500 text-slate-950 hover:bg-cyan-400 transition"
           >
-            Generate Questions Now
+            Generate Practice Now
           </button>
         </div>
       ) : currentQuestion ? (
-        <div className="bg-[#0A1128] border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-5 shadow-lg">
-          {/* Question Metadata Bar */}
+        <div className="bg-[#0A1128] border border-slate-800 rounded-3xl p-5 sm:p-7 space-y-6 shadow-xl">
+          {/* Metadata bar */}
           <div className="flex items-center justify-between text-xs pb-3 border-b border-slate-800">
             <div className="flex items-center gap-2">
-              <span className="font-bold text-cyan-400">
+              <span className="font-extrabold text-cyan-400 text-sm">
                 Question {currentIndex + 1} of {filteredQuestions.length}
               </span>
-              <span className="text-slate-600">•</span>
-              <span className="px-2 py-0.5 rounded bg-slate-900 text-slate-300 font-medium">
+              <span className="text-slate-600">·</span>
+              <span className="text-slate-300 font-semibold">
                 {currentQuestion.subject}
               </span>
-              <span className="px-2 py-0.5 rounded bg-slate-900 text-cyan-300/80 font-medium hidden sm:inline-block">
-                {currentQuestion.topic}
+              <span className="text-slate-500 hidden sm:inline">
+                ({currentQuestion.topic})
               </span>
             </div>
 
             <div className="flex items-center gap-2">
-              <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${
-                currentQuestion.difficulty === 'Easy' 
-                  ? 'bg-emerald-950 text-emerald-400 border border-emerald-800/40' 
-                  : currentQuestion.difficulty === 'Moderate'
-                  ? 'bg-amber-950 text-amber-400 border border-amber-800/40'
-                  : 'bg-rose-950 text-rose-400 border border-rose-800/40'
-              }`}>
+              <span className="text-[11px] font-bold text-slate-400 px-2 py-0.5 rounded bg-slate-900 border border-slate-800">
                 {currentQuestion.difficulty}
               </span>
 
-              {/* Bookmark Button */}
+              {/* Bookmark */}
               <button
                 onClick={handleToggleBookmark}
-                title={isBookmarked ? 'Remove Bookmark' : 'Save Question'}
-                className={`p-1.5 rounded-lg border transition ${
-                  isBookmarked 
-                    ? 'bg-cyan-950 text-cyan-400 border-cyan-800' 
+                title={isBookmarked ? 'Saved' : 'Save Question'}
+                className={`p-2 rounded-xl border transition ${
+                  isBookmarked
+                    ? 'bg-cyan-950 text-cyan-400 border-cyan-800'
                     : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-white'
                 }`}
               >
                 <Bookmark className="w-4 h-4" fill={isBookmarked ? 'currentColor' : 'none'} />
               </button>
 
-              {/* Report Button */}
+              {/* Report */}
               <button
                 onClick={handleReport}
-                title="Report Error in Question"
-                className="p-1.5 rounded-lg bg-slate-900 text-slate-400 border border-slate-800 hover:text-amber-400 transition"
+                title="Report error"
+                className="p-2 rounded-xl bg-slate-900 text-slate-400 border border-slate-800 hover:text-amber-400 transition"
               >
                 <AlertCircle className="w-4 h-4" />
               </button>
@@ -310,17 +283,17 @@ export const PracticeView: React.FC<PracticeViewProps> = ({
           </div>
 
           {reportedMsg && (
-            <div className="p-2 text-xs text-amber-300 bg-amber-950/40 border border-amber-800/60 rounded-xl">
+            <div className="p-2.5 text-xs text-amber-300 bg-amber-950/40 border border-amber-800/60 rounded-xl">
               {reportedMsg}
             </div>
           )}
 
           {/* Question Text */}
-          <div className="text-base sm:text-lg font-medium text-white leading-relaxed whitespace-pre-line">
+          <div className="text-base sm:text-lg font-semibold text-white leading-relaxed whitespace-pre-line py-1">
             {currentQuestion.questionText}
           </div>
 
-          {/* Options List */}
+          {/* Answer Options */}
           <div className="space-y-3 pt-1">
             {currentQuestion.options.map((opt, idx) => {
               const optionLetters = ['A', 'B', 'C', 'D'];
@@ -328,21 +301,21 @@ export const PracticeView: React.FC<PracticeViewProps> = ({
               const isCorrectAnswer = currentQuestion.correctOptionIndex === idx;
 
               let optionStyle = 'bg-slate-900/80 border-slate-800 text-slate-200 hover:border-slate-700';
-              let badgeStyle = 'bg-slate-800 text-slate-400 border-slate-700';
+              let badgeStyle = 'bg-slate-800 text-slate-400 border-slate-700 font-bold';
 
               if (isSubmitted) {
                 if (isCorrectAnswer) {
-                  optionStyle = 'bg-emerald-950/70 border-emerald-500 text-emerald-200 shadow-md shadow-emerald-950/40';
-                  badgeStyle = 'bg-emerald-500 text-slate-950 font-bold border-emerald-400';
+                  optionStyle = 'bg-emerald-950/80 border-emerald-500 text-emerald-200 shadow-lg shadow-emerald-950/50';
+                  badgeStyle = 'bg-emerald-500 text-slate-950 font-black border-emerald-400';
                 } else if (isSelected && !isCorrectAnswer) {
-                  optionStyle = 'bg-rose-950/70 border-rose-500 text-rose-200 shadow-md shadow-rose-950/40';
-                  badgeStyle = 'bg-rose-500 text-white font-bold border-rose-400';
+                  optionStyle = 'bg-rose-950/80 border-rose-500 text-rose-200 shadow-lg shadow-rose-950/50';
+                  badgeStyle = 'bg-rose-500 text-white font-black border-rose-400';
                 } else {
-                  optionStyle = 'bg-slate-900/40 border-slate-800/50 text-slate-500 opacity-60';
+                  optionStyle = 'bg-slate-900/40 border-slate-800/40 text-slate-500 opacity-60';
                 }
               } else if (isSelected) {
-                optionStyle = 'bg-cyan-950/80 border-cyan-400 text-cyan-200 shadow-md shadow-cyan-950/40';
-                badgeStyle = 'bg-cyan-400 text-slate-950 font-bold border-cyan-300';
+                optionStyle = 'bg-cyan-950/80 border-cyan-400 text-cyan-200 shadow-lg shadow-cyan-950/50 ring-1 ring-cyan-400';
+                badgeStyle = 'bg-cyan-400 text-slate-950 font-black border-cyan-300';
               }
 
               return (
@@ -350,31 +323,31 @@ export const PracticeView: React.FC<PracticeViewProps> = ({
                   key={idx}
                   onClick={() => handleSelectOption(idx)}
                   disabled={isSubmitted}
-                  className={`w-full p-4 rounded-xl border text-left flex items-start gap-3.5 transition active:scale-[0.99] ${optionStyle}`}
+                  className={`w-full min-h-[52px] p-4 rounded-2xl border text-left flex items-start gap-3.5 transition-all duration-150 active:scale-[0.99] ${optionStyle}`}
                 >
-                  <span className={`w-7 h-7 rounded-lg border text-xs flex items-center justify-center flex-shrink-0 ${badgeStyle}`}>
+                  <span className={`w-7 h-7 rounded-lg border text-xs flex items-center justify-center flex-shrink-0 mt-0.5 ${badgeStyle}`}>
                     {optionLetters[idx]}
                   </span>
-                  <span className="text-sm font-medium leading-normal flex-1 pt-0.5">
+                  <span className="text-sm font-medium leading-relaxed flex-1 pt-0.5">
                     {opt}
                   </span>
                   {isSubmitted && isCorrectAnswer && (
-                    <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-1" />
                   )}
                   {isSubmitted && isSelected && !isCorrectAnswer && (
-                    <XCircle className="w-5 h-5 text-rose-400 flex-shrink-0 mt-0.5" />
+                    <XCircle className="w-5 h-5 text-rose-400 flex-shrink-0 mt-1" />
                   )}
                 </button>
               );
             })}
           </div>
 
-          {/* Action Bar (Submit / Next) */}
-          <div className="flex items-center justify-between gap-3 pt-3">
+          {/* Action Row */}
+          <div className="flex items-center justify-between gap-3 pt-3 border-t border-slate-800">
             <button
               onClick={handlePrev}
               disabled={currentIndex === 0}
-              className="py-2.5 px-4 rounded-xl text-xs font-semibold bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-1.5"
+              className="py-2.5 px-4 rounded-xl text-xs font-bold bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-1.5 transition"
             >
               <ChevronLeft className="w-4 h-4" /> {t.practice.prevQuestion}
             </button>
@@ -383,7 +356,7 @@ export const PracticeView: React.FC<PracticeViewProps> = ({
               <button
                 onClick={handleSubmitAnswer}
                 disabled={selectedOption === null}
-                className="py-2.5 px-6 rounded-xl font-bold text-xs bg-cyan-500 hover:bg-cyan-400 text-slate-950 shadow-md shadow-cyan-500/20 disabled:opacity-40 disabled:cursor-not-allowed transition"
+                className="py-2.5 px-6 rounded-xl font-black text-xs sm:text-sm bg-cyan-500 hover:bg-cyan-400 text-slate-950 shadow-lg shadow-cyan-500/20 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-150 active:scale-95"
               >
                 {t.practice.submitAnswer}
               </button>
@@ -391,16 +364,16 @@ export const PracticeView: React.FC<PracticeViewProps> = ({
               <button
                 onClick={handleNext}
                 disabled={currentIndex === filteredQuestions.length - 1}
-                className="py-2.5 px-6 rounded-xl font-bold text-xs bg-gradient-to-r from-cyan-400 to-teal-400 hover:from-cyan-300 hover:to-teal-300 text-slate-950 shadow-md shadow-cyan-500/20 flex items-center gap-1.5 transition"
+                className="py-2.5 px-6 rounded-xl font-black text-xs sm:text-sm bg-gradient-to-r from-cyan-400 to-teal-400 hover:from-cyan-300 hover:to-teal-300 text-slate-950 shadow-lg shadow-cyan-500/20 flex items-center gap-1.5 transition-all duration-150 active:scale-95"
               >
                 {t.practice.nextQuestion} <ChevronRight className="w-4 h-4" />
               </button>
             )}
           </div>
 
-          {/* Solution & Explanation Box (Revealed after submit) */}
+          {/* Detailed Solution (Revealed on submit) */}
           {isSubmitted && (
-            <div className="mt-5 p-5 rounded-xl bg-slate-900/90 border border-cyan-900/40 space-y-3 animate-fadeIn">
+            <div className="mt-4 p-5 rounded-2xl bg-slate-900/90 border border-cyan-900/50 space-y-3 animate-fadeIn">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5">
                   <BookOpen className="w-4 h-4" />
@@ -409,7 +382,7 @@ export const PracticeView: React.FC<PracticeViewProps> = ({
 
                 <button
                   onClick={() => onSendToTutor(currentQuestion)}
-                  className="text-xs font-semibold text-cyan-300 hover:text-cyan-200 flex items-center gap-1 py-1 px-2.5 rounded-lg bg-cyan-950/80 border border-cyan-800/60 transition"
+                  className="text-xs font-bold text-cyan-300 hover:text-cyan-200 flex items-center gap-1.5 py-1.5 px-3 rounded-xl bg-cyan-950 border border-cyan-800 hover:bg-cyan-900 transition active:scale-95"
                 >
                   <Sparkles className="w-3.5 h-3.5 text-teal-400" />
                   {t.practice.askTutor}
@@ -421,7 +394,7 @@ export const PracticeView: React.FC<PracticeViewProps> = ({
               </div>
 
               {currentQuestion.shortcutTip && (
-                <div className="p-3 rounded-lg bg-teal-950/40 border border-teal-800/50 text-xs text-teal-300 font-medium flex items-start gap-2">
+                <div className="p-3 rounded-xl bg-teal-950/40 border border-teal-800/50 text-xs text-teal-300 font-medium flex items-start gap-2.5">
                   <Zap className="w-4 h-4 text-teal-400 flex-shrink-0 mt-0.5" />
                   <div>
                     <span className="font-bold text-teal-200 block">{t.practice.shortcutTip}</span>

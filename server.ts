@@ -306,8 +306,9 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, () => {
-    console.log(`🚆 Railway Prep AI server running on port ${PORT}`);
+  const portNumber = Number(PORT) || 3000;
+  app.listen(portNumber, '0.0.0.0', () => {
+    console.log(`🚆 Railway Prep AI server running on http://0.0.0.0:${portNumber}`);
   });
 }
 

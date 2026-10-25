@@ -1,10 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="navy_primary">#0A1128</color>
-    <color name="navy_surface">#0F1E46</color>
-    <color name="navy_dark">#050814</color>
-    <color name="teal_electric">#00E5FF</color>
-    <color name="teal_dark">#0D9488</color>
-    <color name="slate_card">#1E293B</color>
-    <color name="text_primary">#FFFFFF</color>
-    <color name="text_secondary">#94A3B8</color>
+    <color name="colorPrimary">#0A1128</color>
+    <color name="colorPrimaryDark">#040817</color>
+    <color name="colorAccent">#00E5FF</color>
 </resources>

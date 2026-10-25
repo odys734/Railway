@@ -1,5 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_name">Railway Prep AI</string>
-    <string name="made_by">Made by Daman</string>
-    <string name="tagline">Learn Smarter. Practice Better. Prepare with Confidence.</string>
+    <string name="title_activity_main">Railway Prep AI</string>
+    <string name="package_name">com.daman.railwayprep</string>
+    <string name="custom_url_scheme">com.daman.railwayprep</string>
 </resources>
